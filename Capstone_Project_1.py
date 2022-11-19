@@ -40,14 +40,14 @@ inventory = [ #Variable besera data awal
     }
 ]
 
-list_code = [] # List untuk mempermudah pencarian indeks
+list_code = [] # List untuk menyimpan indeks
 for i in inventory: # Input Code awal ke list_code
     list_code.append(i['code'])
     
 flag_save = True # Kondisi penanda apakah code masih berjalan atau tidak
 header = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']
 
-def check_pm(num_pm): # Function untuk mempercepat proses pengecekan input primary key
+def check_pm(num_pm): # Function untuk proses pengecekan input primary key
     x = num_pm
     if 0 <= x <= 9999:
         x = f"{x :04d}"
