@@ -37,6 +37,13 @@ inventory = [ #Variable besera data awal
         'stok':19,
         'harga': 5500,
         'vendor' : 'PT. Panta Indonesia'
+    },
+        {
+        'code':f'{4 :04d}',
+        'name':'Pepsi 330 ml',
+        'stok':14,
+        'harga': 3500,
+        'vendor' : 'PT. Pepsi Indonesia'
     }
 ]
 
@@ -52,13 +59,11 @@ def check_pm(num_pm): # Function untuk proses pengecekan input primary key
     if 0 <= x <= 9999:
         x = f"{x :04d}"
     else:
-        x = None
+        x = "Input Salah"
     return x
 
 def print_table(row,header = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']):
     print(f"\n{tabulate.tabulate(row,header,tablefmt='grid')}\n")
-    
-        
 
 def show(): # Fungsi Menu Read Data
     list_show = [['1. Tampilkan Seluruh Data'],
@@ -68,7 +73,6 @@ def show(): # Fungsi Menu Read Data
     inp_show = int(input('Silahkan Masukkan Perintah yang ingin Dijalankan : '))
     if inp_show == 1:
         if len(inventory) > 0:
-            print(list_code)
             print_table([x.values() for x in inventory])
             show()
         else:
@@ -82,7 +86,7 @@ def show(): # Fungsi Menu Read Data
                 print_table([inventory[list_code.index(inp_pm)].values()])
                 show()
             else:
-                print('Maaf Tidak Ada Data')
+                print('Maaf Data Tidak Ada')
                 show()
         else:
             print('Maaf Tidak Ada Data')
@@ -181,7 +185,11 @@ def update(): # Fungsi Untuk Merubah Data
                     else:
                         update()
                 else:
-                    update()                 
+                    update()     
+    elif inp_update == 2:
+        main()
+    else:
+        update()            
      
 def erase(): # Fungsi Untuk Menghapus Data
     list_erase = [['1. Hapus Data'],
@@ -201,6 +209,10 @@ def erase(): # Fungsi Untuk Menghapus Data
                 print('Data Deleted')
             elif inp_save == 'n' :
                 erase()
+    elif inp_erase == 2:
+        main()
+    else:
+        erase()
                 
 def main(): # Fungsi Untuk Menjalankan Program
     flag = True
