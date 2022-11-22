@@ -1,10 +1,4 @@
 # Gudang Stok 
-# Create : 15
-# Read : 10
-# Update : 20
-# Delete : 15
-# Video Penjelasan : 25
-# Integrasi Sistem dan Efisiensi Kode : 15
 
 #import library
 import tabulate # untuk merubah format print data menjadi bentuk tabel
@@ -51,8 +45,8 @@ list_code = [] # List untuk menyimpan indeks
 for i in inventory: # Input Code awal ke list_code
     list_code.append(i['code'])
     
-flag_save = True # Kondisi penanda apakah code masih berjalan atau tidak
-header = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']
+flag = True # Kondisi penanda apakah code masih berjalan atau tidak
+header_inv = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']
 
 def check_pm(num_pm): # Function untuk proses pengecekan input primary key
     x = num_pm
@@ -62,7 +56,7 @@ def check_pm(num_pm): # Function untuk proses pengecekan input primary key
         x = "Input Salah"
     return x
 
-def print_table(row,header = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']):
+def print_table(row,header = header_inv ):
     print(f"\n{tabulate.tabulate(row,header,tablefmt='grid')}\n")
 
 def show(): # Fungsi Menu Read Data
@@ -70,15 +64,15 @@ def show(): # Fungsi Menu Read Data
                  ['2. Tampilkan Data Menurut Kode Barang'],
                  ['3. Kembali Ke Menu Utama']]
     print_table(list_show,['Perintah'])
-    inp_show = int(input('Silahkan Masukkan Perintah yang ingin Dijalankan : '))
-    if inp_show == 1:
+    inp_show = input('Silahkan Masukkan Perintah yang ingin Dijalankan : ')
+    if inp_show == '1':
         if len(inventory) > 0:
             print_table([x.values() for x in inventory])
             show()
         else:
             print('Maaf belum ada data')
             show()
-    elif inp_show == 2:
+    elif inp_show == '2':
         if len(inventory) > 0:
             inp_pm = int(input('Format kode = angka (max.4 Digit)\nMasukkan Data : '))
             inp_pm = check_pm(inp_pm)
@@ -91,7 +85,7 @@ def show(): # Fungsi Menu Read Data
         else:
             print('Maaf Tidak Ada Data')
             show()    
-    elif inp_show == 3:
+    elif inp_show == '3':
         main()
     else:
         show()
@@ -100,8 +94,8 @@ def add(): # Fungsi Menu untuk menambah data
     list_add = [['1. Menambah Barang'],
                 ['2. Kembali ke Menu Utama']]
     print_table(list_add,['Perintah'])
-    inp_add = int(input('Silahkan Masukkan Perintah yang ingin Dijalankan : '))
-    if inp_add == 1:
+    inp_add = input('Silahkan Masukkan Perintah yang ingin Dijalankan : ')
+    if inp_add == '1':
         inp_pm = int(input('Format kode = angka (max.4 Digit)\nMasukkan Data : '))
         inp_pm = check_pm(inp_pm)
         print(inp_pm)
@@ -126,7 +120,7 @@ def add(): # Fungsi Menu untuk menambah data
                 list_code.append(inp_pm)
             else:
                 add()
-    elif inp_add == 2:
+    elif inp_add == '2':
         main()
     else:
         add()
@@ -135,8 +129,8 @@ def update(): # Fungsi Untuk Merubah Data
     list_update = [['1. Mengubah Data Barang'],
                    ['2. Kembali ke Menu Utama']]
     print_table(list_update,['Perintah'])
-    inp_update = int(input('Silahkan Masukkan Perintah yang ingin Dijalankan : '))
-    if inp_update == 1:
+    inp_update = input('Silahkan Masukkan Perintah yang ingin Dijalankan : ')
+    if inp_update == '1':
         inp_pm = int(input('Format kode = angka (max.4 Digit)\nMasukkan Data : '))
         inp_pm = check_pm(inp_pm)
         print(inp_pm)
@@ -186,7 +180,7 @@ def update(): # Fungsi Untuk Merubah Data
                         update()
                 else:
                     update()     
-    elif inp_update == 2:
+    elif inp_update == '2':
         main()
     else:
         update()            
@@ -195,8 +189,8 @@ def erase(): # Fungsi Untuk Menghapus Data
     list_erase = [['1. Hapus Data'],
                   ['2. Kembali ke Menu Utama']]
     print_table(list_erase,['Perintah'])
-    inp_erase = int(input('Silahkan Masukan Perintah yang ingin dijalankan : '))
-    if inp_erase == 1:
+    inp_erase = input('Silahkan Masukan Perintah yang ingin dijalankan : ')
+    if inp_erase == '1':
         inp_pm = int(input('Format kode = angka (max.4 Digit)\nMasukkan Data : '))
         inp_pm = check_pm(inp_pm)
         print(inp_pm)
@@ -209,7 +203,7 @@ def erase(): # Fungsi Untuk Menghapus Data
                 print('Data Deleted')
             elif inp_save == 'n' :
                 erase()
-    elif inp_erase == 2:
+    elif inp_erase == '2':
         main()
     else:
         erase()
