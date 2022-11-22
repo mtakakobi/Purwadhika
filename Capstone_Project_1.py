@@ -44,8 +44,7 @@ inventory = [ #Variable besera data awal
 list_code = [] # List untuk menyimpan indeks
 for i in inventory: # Input Code awal ke list_code
     list_code.append(i['code'])
-    
-flag = True # Kondisi penanda apakah code masih berjalan atau tidak
+
 header_inv = ['Kode Barang','Nama Barang','Stok Barang','Harga Barang','Vendor']
 
 def check_pm(num_pm): # Function untuk proses pengecekan input primary key
@@ -58,6 +57,31 @@ def check_pm(num_pm): # Function untuk proses pengecekan input primary key
 
 def print_table(row,header = header_inv ):
     print(f"\n{tabulate.tabulate(row,header,tablefmt='grid')}\n")
+    
+def main(): # Fungsi Untuk Menjalankan Program
+    flag = True
+    while flag:
+        list_main = [['1. Tampilkan Data'],
+                     ['2. Menambah Barang'],
+                     ['3. Mengubah Data barang'],
+                     ['4. Menghapus Barang'],
+                     ['5. Keluar']]
+        print_table(list_main,['Perintah'])
+        inp = input('Masukkan Pilihan Menu : ')
+        if inp == "1":
+            show()
+        elif inp == "2":
+            add()
+        elif inp == "3":
+            update()
+        elif inp == "4":
+            erase()
+        elif inp == "5":
+            print('Terima Kasih!')
+            exit()
+        else:
+            print('Pilihan yang anda masukkan salah, silahkan Mengulang')
+            flag
 
 def show(): # Fungsi Menu Read Data
     list_show = [['1. Tampilkan Seluruh Data'],
@@ -207,30 +231,5 @@ def erase(): # Fungsi Untuk Menghapus Data
         main()
     else:
         erase()
-                
-def main(): # Fungsi Untuk Menjalankan Program
-    flag = True
-    while flag:
-        list_main = [['1. Tampilkan Data'],
-                     ['2. Menambah Barang'],
-                     ['3. Mengubah Data barang'],
-                     ['4. Menghapus Barang'],
-                     ['5. Keluar']]
-        print_table(list_main,['Perintah'])
-        inp = input('Masukkan Pilihan Menu : ')
-        if inp == "1":
-            show()
-        elif inp == "2":
-            add()
-        elif inp == "3":
-            update()
-        elif inp == "4":
-            erase()
-        elif inp == "5":
-            print('Terima Kasih!')
-            exit()
-        else:
-            print('Pilihan yang anda masukkan salah, silahkan Mengulang')
-            flag
 
 main()
